@@ -1130,7 +1130,7 @@ int xlua_struct_set_##type(lua_State *L) { \
 			luaL_error(L, "css == NULL");\
 		}\
 		if(css->fake_id != -1) {\
-			luaL_error(L, "css->fake_id != -1");\
+			luaL_error(L, "css->fake_id == %d", css->fake_id);\
 		}\
 		if(css->len < offset + sizeof(type)) {\
 			luaL_error(L, "css->len = %d, offset = %d, sizeof(type) = %d", css->len, offset, sizeof(type));\

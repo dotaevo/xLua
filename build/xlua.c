@@ -1126,6 +1126,15 @@ int xlua_struct_set_##type(lua_State *L) { \
 	int offset = xlua_tointeger(L, lua_upvalueindex(1));\
 	type val;\
 	if (css == NULL || css->fake_id != -1 || css->len < offset + sizeof(type)) {\
+		if(css == NULL) {\
+			luaL_error(L, "css == NULL");\
+		}\
+		if(css->fake_id != -1) {\
+			luaL_error(L, "css->fake_id != -1");\
+		}\
+		if(css->len < offset + sizeof(type)) {\
+			luaL_error(L, "css->len = %d, offset = %d, sizeof(type) = %d", css->len, offset, sizeof(type));\
+		}\
 		return luaL_error(L, "invalid c# struct!");\
 	} else {\
 	    val = (type)to_func(L, 2);\

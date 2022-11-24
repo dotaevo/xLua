@@ -355,7 +355,7 @@ static unsigned int computesizes (unsigned int nums[], unsigned int *pna) {
   for (i = 0, twotoi = 1;
        twotoi > 0 && *pna > twotoi / 2;
        i++, twotoi *= 2) {
-    print("just try it");
+    printf("just try it");
     a += nums[i];
     if (a > twotoi/2) {  /* more than half elements present? */
       optimal = twotoi;  /* optimal size (till now) */

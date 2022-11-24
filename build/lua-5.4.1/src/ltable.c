@@ -354,18 +354,19 @@ static unsigned int computesizes (unsigned int nums[], unsigned int *pna) {
   unsigned int optimal = 0;  /* optimal size for array part */
   /* loop while keys can fill more than half of total size */
   FILE *fp = NULL;
-  fp = fopen("testLua54.txt", "w+");
+  fp = fopen("testLua54.txt", "a+");
   for (i = 0, twotoi = 1;
        twotoi > 0 && *pna > twotoi / 2;
        i++, twotoi *= 2) {
     //printf("just try it");
-    fprintf(fp, "This is testing for fprintf...\n");
+    fprintf(fp, "i = %d, twotoi = %d, *pna = %d, nums[i] = %d, a = %d, optimal = %d, na = %d\n", i, twotoi, *pna, nums[i], a, optimal, na);
     a += nums[i];
     if (a > twotoi/2) {  /* more than half elements present? */
       optimal = twotoi;  /* optimal size (till now) */
       na = a;  /* all elements up to 'optimal' will go to array part */
     }
   }
+  fprintf(fp, "=========================\n\n");
   fclose(fp);
   lua_assert((optimal == 0 || optimal / 2 < na) && na <= optimal);
   *pna = na;

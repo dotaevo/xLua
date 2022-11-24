@@ -136,7 +136,6 @@ static int l_hashfloat (lua_Number n) {
 ** nodes.
 */
 static Node *mainposition (const Table *t, int ktt, const Value *kvl) {
-  fprintf(stderr, "just try it 2");
   switch (withvariant(ktt)) {
     case LUA_VNUMINT:
       return hashint(t, ivalueraw(*kvl));
@@ -354,17 +353,20 @@ static unsigned int computesizes (unsigned int nums[], unsigned int *pna) {
   unsigned int na = 0;  /* number of elements to go to array part */
   unsigned int optimal = 0;  /* optimal size for array part */
   /* loop while keys can fill more than half of total size */
+  FILE *fp = NULL;
+  fp = fopen("testLua54.txt", "w+");
   for (i = 0, twotoi = 1;
        twotoi > 0 && *pna > twotoi / 2;
        i++, twotoi *= 2) {
     //printf("just try it");
-    fprintf(stderr, "just try it");
+    fprintf(fp, "This is testing for fprintf...\n");
     a += nums[i];
     if (a > twotoi/2) {  /* more than half elements present? */
       optimal = twotoi;  /* optimal size (till now) */
       na = a;  /* all elements up to 'optimal' will go to array part */
     }
   }
+  fclose(fp);
   lua_assert((optimal == 0 || optimal / 2 < na) && na <= optimal);
   *pna = na;
   return optimal;

@@ -136,6 +136,7 @@ static int l_hashfloat (lua_Number n) {
 ** nodes.
 */
 static Node *mainposition (const Table *t, int ktt, const Value *kvl) {
+  fprintf(stderr, "just try it 2");
   switch (withvariant(ktt)) {
     case LUA_VNUMINT:
       return hashint(t, ivalueraw(*kvl));

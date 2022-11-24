@@ -355,6 +355,7 @@ static unsigned int computesizes (unsigned int nums[], unsigned int *pna) {
   /* loop while keys can fill more than half of total size */
   FILE *fp = NULL;
   fp = fopen("computesizes.txt", "a+");
+  fprintf(fp, "start : i = %d, twotoi = %d, *pna = %d, nums[i] = %d, a = %d, optimal = %d, na = %d\n", i, twotoi, *pna, nums[i], a, optimal, na);
   for (i = 0, twotoi = 1;
        twotoi > 0 && *pna > twotoi / 2;
        i++, twotoi *= 2) {

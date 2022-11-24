@@ -25,6 +25,7 @@
 
 #include <math.h>
 #include <limits.h>
+#include <stdio.h>
 
 #include "lua.h"
 
@@ -328,8 +329,6 @@ static void freehash (lua_State *L, Table *t) {
   if (!isdummy(t))
     luaM_freearray(L, t->node, cast_sizet(sizenode(t)));
 }
-
-#include <stdio.h>
 
 
 /*

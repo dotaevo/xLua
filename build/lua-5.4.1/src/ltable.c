@@ -354,7 +354,7 @@ static unsigned int computesizes (unsigned int nums[], unsigned int *pna) {
   unsigned int optimal = 0;  /* optimal size for array part */
   /* loop while keys can fill more than half of total size */
   FILE *fp = NULL;
-  fp = fopen("testLua54.txt", "a+");
+  fp = fopen("computesizes.txt", "a+");
   for (i = 0, twotoi = 1;
        twotoi > 0 && *pna > twotoi / 2;
        i++, twotoi *= 2) {
@@ -396,6 +396,8 @@ static unsigned int numusearray (const Table *t, unsigned int *nums) {
   unsigned int ause = 0;  /* summation of 'nums' */
   unsigned int i = 1;  /* count to traverse all array keys */
   unsigned int asize = limitasasize(t);  /* real array size */
+  FILE *fp = NULL;
+  fp = fopen("numusearray.txt", "a+");
   /* traverse each slice */
   for (lg = 0, ttlg = 1; lg <= MAXABITS; lg++, ttlg *= 2) {
     unsigned int lc = 0;  /* counter */
@@ -408,11 +410,16 @@ static unsigned int numusearray (const Table *t, unsigned int *nums) {
     /* count elements in range (2^(lg - 1), 2^lg] */
     for (; i <= lim; i++) {
       if (!isempty(&t->array[i-1]))
+      {
+        fprintf(fp, "lg = %d, i = %d, t->array[i-1] = %d, lc = %d, it passed ...\n", lg, i, t->array[i-1], lc);
         lc++;
+      }
     }
     nums[lg] += lc;
     ause += lc;
   }
+  fprintf(fp, "=========================\n\n");
+  fclose(fp);
   return ause;
 }
 
